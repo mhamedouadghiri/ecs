@@ -1,0 +1,21 @@
+.App {
+  background-color: #f3f2ef;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.app_body {
+  margin-top: 10px;
+  display: flex;
+}
+
+.home {
+  flex: 0.6;
+  margin: 0 20px;
+  border: 1px solid black;
+}
+.home_parag {
+  margin: 0 auto;
+  border: 1px solid black;
+  align-content: center;
+}

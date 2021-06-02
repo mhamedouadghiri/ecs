@@ -1,0 +1,18 @@
+export const properties = {
+  url: "http://localhost:8080/api/",
+  registerUser: "users/auth/register-user",
+  checkUser: "users/auth/check-user",
+  company: "company/all",
+  companyoffers: "company/offers/",
+  students: "school/students/",
+  educations: "student/save/education",
+  offer: "offer/save",
+  skills: "student/save/skill",
+  experiences: "student/save/experience",
+  languages: "student/save/language",
+  StudentEducation: "student/educations/",
+  StudentSkill: "student/skills/",
+  StudentLanguage: "student/languages/",
+  StudentExperience: "student/experiences/",
+  studentapply: "student/apply",
+};

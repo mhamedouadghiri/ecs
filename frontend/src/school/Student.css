@@ -1,0 +1,29 @@
+.student {
+  margin: 0 20px;
+  flex: 0.8;
+  display: flex;
+}
+
+.creatstudent {
+  width: 150px;
+  text-align: center;
+  margin-left: 10px;
+  position: sticky;
+}
+Button {
+  position: sticky;
+  top: 80px;
+}
+.zone {
+  width: 87%;
+  margin-left: 12px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+.zone > input {
+  width: 80%;
+}
+.test {
+  margin-left: 40px;
+}

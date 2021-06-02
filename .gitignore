@@ -1,0 +1,14 @@
+# Intellij
+.idea/
+/intellij
+*.iml
+*.iws
+/*.ipr
+
+# Eclipse
+.classpath
+.project
+.settings/
+
+# VS Code
+.vscode/

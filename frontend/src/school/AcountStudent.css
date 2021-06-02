@@ -1,0 +1,16 @@
+.accountstudent {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 50rem;
+  display: flex;
+  justify-content: space-between;
+  height: 65px;
+}
+.post_option {
+  flex: 0.2;
+}
+.post_header {
+  flex: 0.2;
+}

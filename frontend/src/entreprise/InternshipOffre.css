@@ -1,0 +1,17 @@
+.internshipoffre {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 50rem;
+}
+.field {
+  text-align: center;
+}
+.post_body {
+  margin-left: 20px;
+}
+.coverletter {
+  margin-top: 10px;
+  margin-left: 20px;
+}

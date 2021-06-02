@@ -1,0 +1,188 @@
+@import url("https://fonts.googleapis.com/css?family=Poppins:300,400,600,800&display=swap");
+.login {
+  display: grid;
+  place-items: center;
+  margin-left: auto;
+  margin-right: auto;
+  padding-top: 100px;
+  padding-bottom: 100px;
+  transform: translateY(20%);
+}
+.login > img {
+  object-fit: contain;
+  height: 70px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login > form {
+  display: flex;
+  flex-direction: column;
+}
+.login > form > input {
+  width: 350px;
+  height: 50px;
+  font-size: 20px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  border-radius: 5px;
+}
+.toto {
+  width: 30%;
+
+  border-radius: 20px;
+  box-shadow: 2px 1px 1px rgb(151, 151, 151);
+  margin: auto;
+  transform: translateY(45%);
+  background-color: rgb(255, 255, 255);
+}
+.main_login {
+  background-color: rgb(255, 255, 255);
+  height: 913px;
+}
+.img {
+  box-shadow: -2px 1px 1px rgb(151, 151, 151);
+  border-radius: 20px;
+  object-fit: contain;
+  height: 70px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+.login > form > button {
+  width: 365px;
+  height: 50px;
+  font-size: large;
+  color: #fff;
+  background-color: #0074b1;
+  border-radius: 5px;
+}
+.login__register {
+  color: #0177b7;
+  cursor: pointer;
+}
+.login > p {
+  margin-top: 20px;
+}
+Form {
+  padding: 5px 5px;
+}
+Form > .authinput {
+  margin-top: 10px;
+  width: 250px;
+}
+.botona {
+  border: 1px solid black;
+  margin-top: 10px;
+  display: flex;
+  margin-left: 180px;
+  margin-bottom: 10px;
+}
+
+.newEcs {
+  color: #878b8d;
+}
+.navbar-login {
+  width: 970px;
+  margin: auto;
+  margin-top: 15px;
+  display: flex;
+  justify-content: space-between;
+  font-family: "Poppins";
+}
+.log {
+  font-weight: lighter;
+  cursor: pointer;
+  font-size: large;
+}
+.logo {
+  font-size: large;
+}
+.formulaireInscription {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background-color: rgb(247, 247, 247);
+  z-index: 10;
+  transform: translateY(100%);
+}
+
+.userInscription {
+  border: 1px solid black;
+  width: 40%;
+  transform: translateY(100%);
+  margin: auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.firstPart {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 95%;
+  margin: auto;
+}
+
+.first p {
+  margin-top: -10px;
+  margin-left: 20px;
+}
+.closeBtn {
+  cursor: pointer;
+}
+.separateur {
+  width: 90%;
+  margin: auto;
+  height: 1px;
+  background: rgb(185, 185, 185);
+}
+
+.secondPart {
+  align-items: center;
+  width: 95%;
+  margin: auto;
+}
+.zoneMail,
+.zoneNP,
+.zonePassword {
+  width: 90%;
+  margin: auto;
+  margin-top: 3%;
+}
+.zoneNP {
+  display: flex;
+  justify-content: space-between;
+}
+.zonePassword {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 10px;
+}
+.zoneNP input,
+.password1 input,
+.password2 input {
+  width: 200px;
+  height: 35px;
+  border: none;
+  background: #eee7e7;
+}
+.zoneMail input {
+  width: 100%;
+  height: 35px;
+  border: none;
+  background: #eee7e7;
+}
+
+.password1,
+.password2 {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.btn-warning {
+  margin-bottom: 10px;
+}

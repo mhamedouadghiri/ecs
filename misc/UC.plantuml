@@ -1,0 +1,56 @@
+@startuml ProjetJEE
+left to right direction
+actor "Entreprise" as fc
+actor "Ecole" as EC
+actor "Etudiant" as ET
+rectangle App {
+  usecase "Gestion des stages" as UC1
+  usecase "Ajouter un offre" as UC2
+  usecase "Annuler un offre" as UC3
+  usecase "Consulter toutes les offres" as UC4
+  usecase (Convoquer les étudiants \npour un entretien) as UC5
+  usecase "S'authentifier" as UC6
+  usecase "Voir les entreprises inscrites" as UC7
+  usecase "Gestion des étudiants" as UC8
+  usecase "Ajouter " as UC9
+  usecase "Supprimer" as UC10
+  usecase "Améliorer son CV" as UC11
+  usecase "Consulter les entreprises" as UC15
+  usecase "Postule\nà une offre" as UC16
+  usecase "Accepter\nun entretien" as UC18
+  usecase "Refuser\nun entretien" as UC19
+  usecase "Consulter les offres" as UC22
+  usecase "Noter un stage" as UC23
+  usecase "Voir les candidatures" as UC24
+}
+' Pour l'entreprise
+fc --> UC1
+fc --> UC4
+UC4 <.left. UC2 :extends
+UC4 <.UC3 :extends
+UC1 <|- UC5
+UC1 <|-down- UC23
+UC1 <|-down- UC24
+
+' Pour l'école
+EC --> UC7
+EC --> UC8
+UC8 <|-right- UC9
+UC8 <|-left- UC10
+
+' Pour les authentifications con
+UC1 .down.> UC6:include
+UC4 .down.> UC6:include
+UC8 .down.> UC6:include
+UC7 .down.> UC6:include
+UC11 .down.> UC6:include
+UC15 .down.> UC6:include
+
+' Pour l'étudiant
+ET --> UC11
+ET --> UC15
+UC15 <.down. UC22 :extends
+UC22 <.. UC16 : extends
+UC22 <.down. UC18 : extends
+UC22 <.down. UC19 : extends
+@enduml

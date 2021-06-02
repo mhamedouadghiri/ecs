@@ -1,0 +1,7 @@
+Le but de notre sujet c'est la conception et le développement d'une application web qui facilite a une école d'ingènieurs de trouver des stages en entreprise pour placer les étudiants, et cette dernière permettant d'accéder à :
+
+- Un espace privé pour : 
+     * Une Entreprise : Créer des offres de stages, Consulter toutes les offres de l'entreprise qu'il gère, Consulter la liste de tous les étudiants qui ont postulé à une offre qu'il a crée, Convoquer les étudiant pour un entretien.
+     * Admin école : Peut voir les entreprises inscrites, peut inscrire les étudiants, voir qui sont les étudiant qui n'ont pas encore trouvé un stage.
+     * Etudiant : accéder à son compte, améliorer son CV, consulter les stages postuler par les entreprises, peut postuler à une offre en joignant une photo ou/et une lettre de motivation, peut refuser une demande d'entretien ou la valider, peut changer son statut : à la Recherche/Stage Trouvé.
+     * Un Admin Système : peut créer des entreprises, peut créer des écoles.

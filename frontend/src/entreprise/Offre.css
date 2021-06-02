@@ -1,0 +1,25 @@
+.offre {
+  display: flex;
+  flex: 0.8;
+  margin-left: 20px;
+}
+.creatoffres {
+  width: 150px;
+  text-align: center;
+  margin-left: 10px;
+  position: sticky;
+}
+Button {
+  position: sticky;
+  top: 80px;
+}
+.updating {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 50rem;
+}
+.payinput {
+  width: 50%;
+}

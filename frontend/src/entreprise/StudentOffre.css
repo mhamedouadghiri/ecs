@@ -1,0 +1,11 @@
+.studentOffres {
+  background-color: white;
+  padding: 15px;
+  margin-bottom: 10px;
+  border-radius: 10px;
+  width: 50rem;
+}
+.infostudent {
+  display: flex;
+  justify-content: space-around;
+}
