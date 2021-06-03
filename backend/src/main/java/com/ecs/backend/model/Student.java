@@ -27,8 +27,8 @@ public class Student extends  User{
     public Student() {
     }
 
-    public Student(Long id, String email, String password, String phone,UserType userType, String firstName, String lastName, String city, String country, String address, Boolean status, Long schoolYear, String major) {
-        super(id, email, password, phone,userType);
+    public Student(Long id, String email, String password, String phone,String firstName, String lastName, String city, String country, String address, Boolean status, Long schoolYear, String major) {
+        super(email, password, phone);
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;

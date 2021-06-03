@@ -26,13 +26,13 @@ public class UserService {
         User Checker;
         switch (user.getUserType()){
             case company:
-                Checker = companyRepository.getByEmail(user.getEmail());
+                Checker = companyRepository.findByEmail(user.getEmail());
                 break;
             case student:
-                Checker = studentRepository.getByEmail(user.getEmail());
+                Checker = studentRepository.findByEmail(user.getEmail());
                 break;
             case school:
-                Checker = schoolRepository.getByEmail(user.getEmail());
+                Checker = schoolRepository.findByEmail(user.getEmail());
                 break;
             default:
                 return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
@@ -42,4 +42,30 @@ public class UserService {
         }
         return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
     }
+
+//    public ResponseEntity<?> registerUser(RegisterUser user) {
+//        User entity;
+//        Long saveId;
+//        switch (user.getUserType()){
+//            case company:
+//                entity = new Company(user.getEmail(),
+//                        user.getPassword(),
+//                        user.getPhone(),
+//                        user.getName(),
+//                        null,
+//                        null,
+//                        null,
+//                        null);
+//                saveId=companyRepository.save(entity);
+//                break;
+//
+//            case student:
+//                break;
+//            case school:
+//                break;
+//            default:
+//                throw new IllegalStateException("Unexpected value: " + user.getUserType());
+//        }
+//        return ResponseEntity.ok(user);
+//    }
 }

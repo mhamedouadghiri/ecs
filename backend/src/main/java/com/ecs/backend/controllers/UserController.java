@@ -1,5 +1,6 @@
 package com.ecs.backend.controllers;
 
+import com.ecs.backend.model.RegisterUser;
 import com.ecs.backend.model.User;
 import com.ecs.backend.services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/api/users/")
+@CrossOrigin(origins = "http://localhost:3000")
 public class UserController {
 
     final private UserService userService;
@@ -16,8 +18,14 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping(path = "auth/check-user")
+    @PostMapping(path = "/auth/check-user")
     public ResponseEntity<?> checkUserCredentials(@RequestBody User user){
         return userService.checkUserCredentials(user);
     }
+
+    @PostMapping(path = "/auth/register-user")
+    public ResponseEntity<?> registerUser(@RequestBody RegisterUser user){
+        return null;
+    }
+
 }

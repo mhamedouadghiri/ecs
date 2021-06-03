@@ -13,25 +13,19 @@ export default function Login({ setToken, userType }) {
   let detailsAuth = {
     email: email1,
     password: password,
-    "user-type": userType,
+    userType: userType,
   };
-  let formBodyAuth = [];
-  for (let property in detailsAuth) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailsAuth[property]);
-    formBodyAuth.push(encodedKey + "=" + encodedValue);
-  }
-  formBodyAuth = formBodyAuth.join("&");
-
+  //Begin Login
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(detailsAuth);
     fetch(`${properties.url}${properties.checkUser}`, {
       method: "POST",
       headers: {
         Accept: "application/json",
-        "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+        "Content-Type": "application/json;charset=UTF-8",
       },
-      body: formBodyAuth,
+      body: JSON.stringify(detailsAuth),
     }).then((response) => {
       if (response.status === 200) {
         response.json().then((data) => {
@@ -43,7 +37,9 @@ export default function Login({ setToken, userType }) {
       }
     });
   };
+  //End Login
 
+  // Begin Inscription
   //for inscription
 
   const [email, setEmail] = useState("");
@@ -97,6 +93,7 @@ export default function Login({ setToken, userType }) {
       alert("Passwords don't match.");
     }
   };
+  // End Inscription
 
   return (
     <div className="main_login">

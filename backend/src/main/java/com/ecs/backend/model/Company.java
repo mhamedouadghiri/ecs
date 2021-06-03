@@ -22,8 +22,8 @@ public class Company extends  User{
     public Company() {
     }
 
-    public Company(Long id, String email, String password, String phone, UserType userType,String name, String description, String city, String country, String address) {
-        super(id, email, password, phone,userType);
+    public Company(String email, String password, String phone,String name, String description, String city, String country, String address) {
+        super(email, password, phone);
         this.name = name;
         this.description = description;
         this.city = city;

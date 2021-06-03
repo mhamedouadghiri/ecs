@@ -33,7 +33,7 @@ public class School extends  User{
                   String phone,
                   UserType userType,
                   String name) {
-        super(email, password, phone, userType);
+        super(email, password, phone);
         this.name = name;
     }
 
