@@ -2,7 +2,7 @@ import { Avatar } from "@material-ui/core";
 import React from "react";
 import "./AcountStudent.css";
 
-function AcountStudent({ key, firstName, lastName, email }) {
+function AcountStudent({ key, firstName, lastName, email, major, schoolYear }) {
   return (
     <div className="accountstudent">
       <div className="post_header">
@@ -13,8 +13,8 @@ function AcountStudent({ key, firstName, lastName, email }) {
         </div>
       </div>
       <div className="post_option">{firstName}</div>
-      <div className="post_option">GL</div>
-      <div className="post_option">2ème année</div>
+      <div className="post_option">{major}</div>
+      <div className="post_option">{schoolYear}ème année</div>
     </div>
   );
 }

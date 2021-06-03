@@ -8,7 +8,8 @@ import javax.persistence.UniqueConstraint;
 @Entity(name = "company")
 @Table(name = "company",
         uniqueConstraints = {
-                @UniqueConstraint(name = "company_email_unique", columnNames = "email")
+                @UniqueConstraint(name = "company_email_unique", columnNames = "email"),
+                @UniqueConstraint(name = "company_name_unique", columnNames = "name")
         })
 public class Company extends  User{
 
@@ -21,8 +22,8 @@ public class Company extends  User{
     public Company() {
     }
 
-    public Company(Long id, String email, String password, String phone, String name, String description, String city, String country, String address) {
-        super(id, email, password, phone);
+    public Company(Long id, String email, String password, String phone, UserType userType,String name, String description, String city, String country, String address) {
+        super(id, email, password, phone,userType);
         this.name = name;
         this.description = description;
         this.city = city;

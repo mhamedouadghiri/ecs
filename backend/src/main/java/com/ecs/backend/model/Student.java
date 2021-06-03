@@ -6,7 +6,7 @@ import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
 
-@Entity(name="Student")
+@Entity(name="student")
 @Table(name ="student",
     uniqueConstraints = {
         @UniqueConstraint(name = "student_email_unique", columnNames = "email")
@@ -21,14 +21,14 @@ public class Student extends  User{
     private Boolean status;
     private Long schoolYear;
     private String major;
-    @ManyToOne
-    private School school;
+    //@ManyToOne
+    //private School school;
 
     public Student() {
     }
 
-    public Student(Long id, String email, String password, String phone, String firstName, String lastName, String city, String country, String address, Boolean status, Long schoolYear, String major, School schoolId) {
-        super(id, email, password, phone);
+    public Student(Long id, String email, String password, String phone,UserType userType, String firstName, String lastName, String city, String country, String address, Boolean status, Long schoolYear, String major) {
+        super(id, email, password, phone,userType);
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -37,7 +37,7 @@ public class Student extends  User{
         this.status = status;
         this.schoolYear = schoolYear;
         this.major = major;
-        this.school = schoolId;
+        //this.school = schoolId;
     }
 
     public String getFirstName() {
@@ -104,11 +104,11 @@ public class Student extends  User{
         this.major = major;
     }
 
-    public School getSchool() {
-        return school;
-    }
+    //public School getSchool() {
+        //return school;
+    //}
 
-    public void setSchool(School school) {
-        this.school = school;
-    }
+    //public void setSchool(School school) {
+       // this.school = school;
+    //}
 }

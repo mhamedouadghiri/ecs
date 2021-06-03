@@ -20,14 +20,15 @@ public class InternshipOffer {
             strategy = IDENTITY
     )
     private Long id;
+
     private String title;
     private Integer duration;
     private LocalDate startDate;
     private LocalDate endDate;
-    @Column(columnDefinition = "TEXT")
     private String description;
     private Integer pay;
     private Boolean status;
     private String field;
-    private Long companyId;
+    @ManyToOne
+    private Company company;
 }

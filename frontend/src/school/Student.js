@@ -15,12 +15,12 @@ function Student(props) {
   useEffect(() => {
     if (!refresh) {
       fetch(`${properties.url}${properties.students}${props.token.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setStudents(data);
-          setRefresh(true);
-          console.log(data);
-        });
+          .then((res) => res.json())
+          .then((data) => {
+            setStudents(data);
+            setRefresh(true);
+            console.log(data);
+          });
     }
   }, [refresh]);
 
@@ -28,6 +28,8 @@ function Student(props) {
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
   const [email, setEmail] = useState("");
+  const [schoolYear, setSchoolYear] = useState("");
+  const [major, setMajor] = useState("");
   const [password1, setPassword1] = useState("");
   const [password2, setPassword2] = useState("");
 
@@ -41,6 +43,8 @@ function Student(props) {
     "first-name": firstName,
     "last-name": lastName,
     "school-id": props.token.id,
+    "school-year": schoolYear,
+    major: major,
   };
   let formBody = [];
   for (let property in detailsStud) {
@@ -52,10 +56,10 @@ function Student(props) {
 
   const creerStudent = () => {
     if (
-      email !== "" &&
-      password1 === password2 &&
-      firstName !== "" &&
-      lastName !== ""
+        email !== "" &&
+        password1 === password2 &&
+        firstName !== "" &&
+        lastName !== ""
     ) {
       console.log(detailsStud);
       fetch(`${properties.url}${properties.registerUser}`, {
@@ -67,11 +71,11 @@ function Student(props) {
         },
         body: formBody,
       })
-        .then((response) => response.json())
-        .then((data) => {
-          console.log("the data:", data);
-          setRefresh(false);
-        });
+          .then((response) => response.json())
+          .then((data) => {
+            console.log("the data:", data);
+            setRefresh(false);
+          });
 
       setPassword2("");
       setPassword1("");
@@ -86,103 +90,129 @@ function Student(props) {
     }
   };
   return (
-    <div className="student">
-      <div className="students">
-        {students ? (
-          students.map((student) => (
-            <AcountStudent
-              key={student.id}
-              lastName={student.lastName}
-              firstName={student.firstName}
-              email={student.email}
-            />
-          ))
-        ) : (
-          <div className="updating">No student enrolled</div>
-        )}
+      <div className="student">
+        <div className="students">
+          {students ? (
+              students.map((student) => (
+                  <AcountStudent
+                      key={student.id}
+                      lastName={student.lastName}
+                      firstName={student.firstName}
+                      email={student.email}
+                      major={student.major}
+                      schoolYear={student.schoolYear}
+                  />
+              ))
+          ) : (
+              <div className="updating">No student enrolled</div>
+          )}
+        </div>
+        <div className="creatstudent">
+          <Button onClick={handleShow} className="btn btn-warning">
+            créer un Student
+          </Button>
+        </div>
+        {/* Insértion d'un étudiant dans une école */}
+        <Modal centered show={show} onHide={handleClose} animation={false}>
+          <Header closeButton>
+            <Title>Ajouter Un étudiant</Title>
+          </Header>
+          <form onSubmit={creerStudent} className="inscriptionStudent">
+            <Body>
+              <div className="firstPart">
+                <div>
+                  <label>First Name :</label>
+                  <input
+                      value={firstName}
+                      type="text"
+                      placeholder="FirstName"
+                      onChange={(e) => {
+                        setFirstName(e.target.value);
+                      }}
+                  />
+                </div>
+                <div>
+                  <label>Last Name :</label>
+                  <input
+                      value={lastName}
+                      type="text"
+                      placeholder="LastName"
+                      onChange={(e) => {
+                        setLastName(e.target.value);
+                      }}
+                  />
+                </div>
+              </div>
+              <div className="firstPart">
+                <div>
+                  <label>Major :</label>
+                  <input
+                      value={major}
+                      type="text"
+                      placeholder="Major"
+                      onChange={(e) => {
+                        setMajor(e.target.value);
+                      }}
+                  />
+                </div>
+                <div className="schoolyear">
+                  <label>School Year :</label>
+                  <input
+                      value={schoolYear}
+                      type="text"
+                      placeholder="School Year"
+                      onChange={(e) => {
+                        setSchoolYear(e.target.value);
+                      }}
+                  />
+                </div>
+              </div>
+              <div className="zone">
+                <label>Email:</label>
+                <input
+                    className="emailZone"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    placeholder="Email"
+                    type="email"
+                />
+              </div>
+              <div className="firstPart">
+                <div>
+                  <label>Password :</label>
+                  <input
+                      value={password1}
+                      type="password"
+                      placeholder="Password"
+                      onChange={(e) => {
+                        setPassword1(e.target.value);
+                      }}
+                  />
+                </div>
+                <div className="test">
+                  <label>Confirm Password :</label>
+                  <input
+                      value={password2}
+                      type="password"
+                      placeholder="Password"
+                      onChange={(e) => {
+                        setPassword2(e.target.value);
+                      }}
+                  />
+                </div>
+              </div>
+            </Body>
+            <Footer>
+              <Button variant="secondary" onClick={handleClose}>
+                Close
+              </Button>
+              <Button type="submit" variant="primary">
+                Save Student
+              </Button>
+            </Footer>
+          </form>
+        </Modal>
       </div>
-      <div className="creatstudent">
-        <Button onClick={handleShow} className="btn btn-warning">
-          créer un Student
-        </Button>
-      </div>
-      {/* Insértion d'un étudiant dans une école */}
-      <Modal centered show={show} onHide={handleClose} animation={false}>
-        <Header closeButton>
-          <Title>Ajouter Un étudiant</Title>
-        </Header>
-        <form onSubmit={creerStudent} className="inscriptionStudent">
-          <Body>
-            <div className="firstPart">
-              <div>
-                <label>First Name :</label>
-                <input
-                  value={firstName}
-                  type="text"
-                  placeholder="FirstName"
-                  onChange={(e) => {
-                    setFirstName(e.target.value);
-                  }}
-                />
-              </div>
-              <div>
-                <label>Last Name :</label>
-                <input
-                  value={lastName}
-                  type="text"
-                  placeholder="LastName"
-                  onChange={(e) => {
-                    setLastName(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-            <div className="zone">
-              <label>Email:</label>
-              <input
-                className="emailZone"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-                placeholder="Email"
-                type="email"
-              />
-            </div>
-            <div className="firstPart">
-              <div>
-                <label>Password :</label>
-                <input
-                  value={password1}
-                  type="password"
-                  placeholder="Password"
-                  onChange={(e) => {
-                    setPassword1(e.target.value);
-                  }}
-                />
-              </div>
-              <div className="test">
-                <label>Confirm Password :</label>
-                <input
-                  value={password2}
-                  type="password"
-                  placeholder="Password"
-                  onChange={(e) => {
-                    setPassword2(e.target.value);
-                  }}
-                />
-              </div>
-            </div>
-          </Body>
-          <Footer>
-            <Button variant="secondary" onClick={handleClose}>
-              Close
-            </Button>
-            <Button type="submit" variant="primary">
-              Save Student
-            </Button>
-          </Footer>
-        </form>
-      </Modal>
-    </div>
   );
 }
 
