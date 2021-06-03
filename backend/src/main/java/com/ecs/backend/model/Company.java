@@ -11,7 +11,7 @@ import javax.persistence.UniqueConstraint;
                 @UniqueConstraint(name = "company_email_unique", columnNames = "email"),
                 @UniqueConstraint(name = "company_name_unique", columnNames = "name")
         })
-public class Company extends  User{
+public class Company extends User {
 
     private String name;
     private String description;
@@ -22,8 +22,8 @@ public class Company extends  User{
     public Company() {
     }
 
-    public Company(String email, String password, String phone,String name, String description, String city, String country, String address) {
-        super(email, password, phone);
+    public Company(Long id, String email, String password, String phone, String name, String description, String city, String country, String address) {
+        super(id, email, password, phone);
         this.name = name;
         this.description = description;
         this.city = city;

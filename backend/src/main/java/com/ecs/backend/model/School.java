@@ -12,28 +12,15 @@ import javax.persistence.UniqueConstraint;
                 @UniqueConstraint(name = "school_name_unique", columnNames = "name")
         }
 )
-public class School extends  User{
+public class School extends User {
 
     private String name;
+
     public School() {
     }
 
-    public School(Long id,
-                  String email,
-                  String password,
-                  String phone,
-                  UserType userType,
-                  String name) {
-        super(id, email, password, phone,userType);
-        this.name = name;
-    }
-
-    public School(String email,
-                  String password,
-                  String phone,
-                  UserType userType,
-                  String name) {
-        super(email, password, phone);
+    public School(Long id, String email, String password, String phone, String name) {
+        super(id, email, password, phone);
         this.name = name;
     }
 
