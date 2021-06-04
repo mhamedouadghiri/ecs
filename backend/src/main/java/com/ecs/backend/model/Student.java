@@ -1,9 +1,6 @@
 package com.ecs.backend.model;
 
-import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.Table;
-import javax.persistence.UniqueConstraint;
+import javax.persistence.*;
 
 
 @Entity(name="student")
@@ -13,22 +10,27 @@ import javax.persistence.UniqueConstraint;
     })
 
 public class Student extends  User{
+    @Column(nullable = false)
     private String firstName;
+
+    @Column(nullable = false)
     private String lastName;
+
     private String city;
     private String country;
     private String address;
     private Boolean status;
     private Long schoolYear;
     private String major;
-    //@ManyToOne
-    //private School school;
+    @ManyToOne
+    @JoinColumn(referencedColumnName = "id",name = "school_id",updatable = false, nullable = false)
+    private School school;
 
     public Student() {
     }
 
-    public Student(Long id, String email, String password, String phone,String firstName, String lastName, String city, String country, String address, Boolean status, Long schoolYear, String major) {
-        super(email, password, phone);
+    public Student(Long id, String email, String password, String phone,String firstName, String lastName, String city, String country, String address, Boolean status, Long schoolYear, String major,School school) {
+        super(id,email, password, phone);
         this.firstName = firstName;
         this.lastName = lastName;
         this.city = city;
@@ -37,7 +39,7 @@ public class Student extends  User{
         this.status = status;
         this.schoolYear = schoolYear;
         this.major = major;
-        //this.school = schoolId;
+        this.school = school;
     }
 
     public String getFirstName() {
@@ -104,11 +106,11 @@ public class Student extends  User{
         this.major = major;
     }
 
-    //public School getSchool() {
-        //return school;
-    //}
+    public School getSchool() {
+        return school;
+    }
 
-    //public void setSchool(School school) {
-       // this.school = school;
-    //}
+    public void setSchool(School school) {
+        this.school = school;
+    }
 }

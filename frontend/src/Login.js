@@ -53,16 +53,8 @@ export default function Login({ setToken, userType }) {
     password: password1,
     name: name,
     phone: phone,
-    "user-type": userType,
+    userType: userType,
   };
-
-  let formBody = [];
-  for (let property in details) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(details[property]);
-    formBody.push(encodedKey + "=" + encodedValue);
-  }
-  formBody = formBody.join("&");
 
   const inscription = (e) => {
     e.preventDefault();
@@ -71,9 +63,9 @@ export default function Login({ setToken, userType }) {
         method: "post",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBody,
+        body: JSON.stringify(details),
       }).then((response) => {
         if (response.status === 200) {
           response.json().then((data) => {
