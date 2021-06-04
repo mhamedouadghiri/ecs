@@ -8,12 +8,13 @@ function Offre(props) {
     if (!offers) {
       fetch(
         `${properties.url}${properties.companyoffers}${props.location.id.idcompany}`
-      )
-        .then((res) => res.json())
-        .then((data) => {
-          setOffers(data);
-          console.log(data);
-        });
+      ).then((res) => {
+        if (res.status === 200) {
+          res.json().then((data) => {
+            setOffers([data]);
+          });
+        }
+      });
     }
   }, [offers]);
   return (

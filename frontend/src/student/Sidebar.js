@@ -17,19 +17,26 @@ function Sidebar(props) {
   const [experiences, setExperiences] = useState(null);
   useEffect(() => {
     if (!refresh) {
-      fetch(`${properties.url}${properties.StudentLanguage}${props.user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setLanguage(data);
-          setRefresh(true);
-        });
-      fetch(`${properties.url}${properties.StudentExperience}${props.user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setExperiences(data);
-          setRefresh(true);
-          console.log(data);
-        });
+      fetch(
+        `${properties.url}${properties.StudentLanguage}${props.user.id}`
+      ).then((res) => {
+        if (res.status === 200) {
+          res.json().then((data) => {
+            setLanguage([data]);
+            setRefresh(true);
+          });
+        }
+      });
+      fetch(
+        `${properties.url}${properties.StudentExperience}${props.user.id}`
+      ).then((res) => {
+        if (res.status === 200) {
+          res.json().then((data) => {
+            setExperiences([data]);
+            setRefresh(true);
+          });
+        }
+      });
     }
   }, [refresh, languages]);
 

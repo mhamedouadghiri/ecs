@@ -15,20 +15,32 @@ function InfoStudent({ user }) {
   const [refresh, setRefresh] = useState(false);
   useEffect(() => {
     if (!refresh) {
-      fetch(`${properties.url}${properties.StudentEducation}${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setEducations(data);
-          setRefresh(true);
-          //console.log(data);
-        });
-      fetch(`${properties.url}${properties.StudentSkill}${user.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setSkills(data);
-          setRefresh(true);
-          //console.log(data);
-        });
+      fetch(`${properties.url}${properties.StudentEducation}${user.id}`).then(
+        (res) => {
+          if (res.status === 200) {
+            res.json().then((data) => {
+              setEducations([data]);
+              setRefresh(true);
+            });
+          }
+        }
+      );
+      fetch(`${properties.url}${properties.StudentSkill}${user.id}`).then(
+        (res) => {
+          if (res.status === 200) {
+            res.json().then((data) => {
+              setSkills([data]);
+              setRefresh(true);
+            });
+          }
+        }
+      );
+      // .then((res) => res.json())
+      // .then((data) => {
+      //   setSkills([data]);
+      //   setRefresh(true);
+      //   //console.log(data);
+      // });
     }
   }, [refresh]);
 

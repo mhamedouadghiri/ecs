@@ -43,13 +43,23 @@ function Offre(props) {
   useEffect(() => {
     // console.log(props.token);
     if (!refresh) {
-      fetch(`${properties.url}${properties.companyoffers}${props.token.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setOffres(data);
-          setRefresh(true);
-          console.log(data);
-        });
+      fetch(
+        `${properties.url}${properties.companyoffers}${props.token.id}`
+      ).then((res) => {
+        if (res.status === 200) {
+          res.json().then((data) => {
+            setOffres([data]);
+            setRefresh(true);
+            console.log(data);
+          });
+        }
+      });
+      // .then((res) => res.json())
+      // .then((data) => {
+      //   setOffres([data]);
+      //   setRefresh(true);
+      //   console.log(data);
+      // });
     }
   }, [refresh]);
 
