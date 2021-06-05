@@ -21,8 +21,19 @@ public class StudentController {
     public ResponseEntity<?> getEducations(@PathVariable("student-id") Long studentId) {
         return studentService.getEducations(studentId);
     }
+
+    @GetMapping("/experiences/{student-id}")
+    public ResponseEntity<?> getExperiences(@PathVariable("student-id") Long studentId){
+        return studentService.getExperiences(studentId);
+    }
+
     @PostMapping("/save/education")
     public ResponseEntity<?> saveEducatin(@RequestBody UserDto user){
         return studentService.saveEducation(user);
+    }
+
+    @PostMapping("/save/experience")
+    public ResponseEntity<?> saveExperience(@RequestBody UserDto user){
+        return studentService.saveExperience(user);
     }
 }

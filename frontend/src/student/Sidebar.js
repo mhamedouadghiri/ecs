@@ -32,7 +32,7 @@ function Sidebar(props) {
       ).then((res) => {
         if (res.status === 200) {
           res.json().then((data) => {
-            setExperiences([data]);
+            setExperiences(data);
             setRefresh(true);
           });
         }
@@ -49,33 +49,25 @@ function Sidebar(props) {
   const [edate, setEdate] = useState(null);
   let detailsExp = {
     description: description,
-    "start-date": sdate,
-    "end-date": edate,
-    "student-id": props.user.id,
+    startDate: sdate,
+    endDate: edate,
+    studentId: props.user.id,
   };
-  let formBodyExp = [];
-  for (let property in detailsExp) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailsExp[property]);
-    formBodyExp.push(encodedKey + "=" + encodedValue);
-  }
-  formBodyExp = formBodyExp.join("&");
   const handleSubmitExp = (e) => {
     e.preventDefault();
     if (description !== "") {
       fetch(`${properties.url}${properties.experiences}`, {
         method: "POST",
-        //mode: "no-cors",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBodyExp,
+        body: JSON.stringify(detailsExp),
       })
         .then((response) => response.json())
         .then((data) => {
           setRefresh(false);
-          //console.log(data);
+          console.log(data);
         });
       setDescription("");
 

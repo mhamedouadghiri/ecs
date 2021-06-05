@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,8 +20,8 @@ public class Experience {
             strategy = IDENTITY
     )
     private Long id;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private String description;
     @ManyToOne
     private Student student;
