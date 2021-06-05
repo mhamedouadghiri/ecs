@@ -28,38 +28,24 @@ function Offre(props) {
     title: title,
     description: description,
     field: field,
-    "start-date": sdate,
-    "end-date": edate,
-    "company-id": props.token.id,
+    startDate: sdate,
+    endDate: edate,
+    companyId: props.token.id,
     pay: pay,
   };
-  let formBodyOffr = [];
-  for (let property in detailsOffr) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailsOffr[property]);
-    formBodyOffr.push(encodedKey + "=" + encodedValue);
-  }
-  formBodyOffr = formBodyOffr.join("&");
   useEffect(() => {
-    // console.log(props.token);
     if (!refresh) {
       fetch(
         `${properties.url}${properties.companyoffers}${props.token.id}`
       ).then((res) => {
         if (res.status === 200) {
           res.json().then((data) => {
-            setOffres([data]);
+            setOffres(data);
             setRefresh(true);
             console.log(data);
           });
         }
       });
-      // .then((res) => res.json())
-      // .then((data) => {
-      //   setOffres([data]);
-      //   setRefresh(true);
-      //   console.log(data);
-      // });
     }
   }, [refresh]);
 
@@ -70,9 +56,9 @@ function Offre(props) {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBodyOffr,
+        body: JSON.stringify(detailsOffr),
       })
         .then((response) => response.json())
         .then((data) => {

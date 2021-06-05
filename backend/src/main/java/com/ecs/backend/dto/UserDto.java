@@ -31,4 +31,9 @@ public class UserDto {
     private String major;
     private String schoolYear;
     private String schoolId;
+    private String title;
+    private String companyId;
+    private String pay;
+    private String duration;
+    private String field;
 }

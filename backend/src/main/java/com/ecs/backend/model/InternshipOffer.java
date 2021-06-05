@@ -6,6 +6,7 @@ import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -23,8 +24,8 @@ public class InternshipOffer {
 
     private String title;
     private Integer duration;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
     private String description;
     private Integer pay;
     private Boolean status;

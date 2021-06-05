@@ -25,4 +25,6 @@ public class CompanyService {
         }
         return ResponseEntity.ok(companies);
     }
+
+
 }
