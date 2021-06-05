@@ -5,7 +5,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
-import java.time.LocalDate;
+import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
@@ -20,10 +20,13 @@ public class Education {
             strategy = IDENTITY
     )
     private Long id;
-    private LocalDate startDate;
-    private LocalDate endDate;
+    private Date startDate;
+    private Date endDate;
+    @Column(nullable = false)
     private String name;
+    @Column(nullable = false)
     private String level;
     @ManyToOne
+    @JoinColumn(referencedColumnName = "id",name = "student_id",updatable = false, nullable = false)
     private Student student;
 }

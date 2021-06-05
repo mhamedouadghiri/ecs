@@ -1,13 +1,10 @@
 package com.ecs.backend.controllers;
 
-import com.ecs.backend.model.Student;
+import com.ecs.backend.dto.UserDto;
 import com.ecs.backend.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
-
-import java.util.List;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(path = "/student")
@@ -20,8 +17,12 @@ public class StudentController {
         this.studentService = studentService;
     }
 
-    @GetMapping
-    public List<Student> getStudents() {
-        return studentService.getStudents();
+    @GetMapping("/educations/{student-id}")
+    public ResponseEntity<?> getEducations(@PathVariable("student-id") Long studentId) {
+        return studentService.getEducations(studentId);
+    }
+    @PostMapping("/save/education")
+    public ResponseEntity<?> saveEducatin(@RequestBody UserDto user){
+        return studentService.saveEducation(user);
     }
 }

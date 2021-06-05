@@ -1,7 +1,6 @@
 package com.ecs.backend.services;
 
 import com.ecs.backend.model.Company;
-import com.ecs.backend.model.User;
 import com.ecs.backend.repositories.CompanyRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;

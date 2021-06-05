@@ -16,11 +16,13 @@ function EntrepriseS({ user }) {
   }, [posts]);
   return (
     <div className="entrepriseS">
-      {posts
-        ? posts.map((post) => (
-            <Post key={post.id} company={post} userId={user.id} />
-          ))
-        : "Loading data.."}
+      {posts ? (
+        posts.map((post) => (
+          <Post key={post.id} company={post} userId={user.id} />
+        ))
+      ) : (
+        <div className="updating">No company insert</div>
+      )}
     </div>
   );
 }

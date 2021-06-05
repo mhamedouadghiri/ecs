@@ -19,8 +19,9 @@ function InfoStudent({ user }) {
         (res) => {
           if (res.status === 200) {
             res.json().then((data) => {
-              setEducations([data]);
+              setEducations(data);
               setRefresh(true);
+              console.log(data);
             });
           }
         }
@@ -35,12 +36,6 @@ function InfoStudent({ user }) {
           }
         }
       );
-      // .then((res) => res.json())
-      // .then((data) => {
-      //   setSkills([data]);
-      //   setRefresh(true);
-      //   //console.log(data);
-      // });
     }
   }, [refresh]);
 
@@ -100,18 +95,10 @@ function InfoStudent({ user }) {
   let detailsEduc = {
     name: name,
     level: level,
-    "start-date": sdate,
-    "end-date": edate,
-    "student-id": user.id,
+    startDate: sdate,
+    endDate: edate,
+    studentId: user.id,
   };
-  let formBodyEduc = [];
-  for (let property in detailsEduc) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailsEduc[property]);
-    formBodyEduc.push(encodedKey + "=" + encodedValue);
-  }
-  formBodyEduc = formBodyEduc.join("&");
-
   const handleSubmit = (e) => {
     e.preventDefault();
     if (name !== "" && level !== "") {
@@ -120,9 +107,9 @@ function InfoStudent({ user }) {
         //mode: "no-cors",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBodyEduc,
+        body: JSON.stringify(detailsEduc),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -256,7 +243,7 @@ function InfoStudent({ user }) {
                 />
               </div>
               <div>
-                <label>start date: </label>
+                <label>end date: </label>
                 <DatePicker
                   selected={edate}
                   onChange={(date) => setEdate(date)}

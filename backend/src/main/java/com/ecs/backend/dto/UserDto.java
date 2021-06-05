@@ -6,6 +6,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.Date;
+
 @Getter
 @Setter
 @NoArgsConstructor
@@ -16,6 +18,10 @@ public class UserDto {
     private String email;
     private String phone;
     private String name;
+    private String level;
+    private String startDate;
+    private String endDate;
+    private String studentId;
     private String description;
     private String city;
     private String country;
