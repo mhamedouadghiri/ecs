@@ -27,6 +27,15 @@ public class StudentController {
         return studentService.getExperiences(studentId);
     }
 
+    @GetMapping("/languages/{student-id}")
+    public ResponseEntity<?> getLanguages(@PathVariable("student-id") Long studentId){
+        return studentService.getLanguages(studentId);
+    }
+    @GetMapping("/skills/{student-id}")
+    public ResponseEntity<?> getSkills(@PathVariable("student-id") Long studentId){
+        return studentService.getSkills(studentId);
+    }
+
     @PostMapping("/save/education")
     public ResponseEntity<?> saveEducatin(@RequestBody UserDto user){
         return studentService.saveEducation(user);
@@ -36,4 +45,16 @@ public class StudentController {
     public ResponseEntity<?> saveExperience(@RequestBody UserDto user){
         return studentService.saveExperience(user);
     }
+
+    @PostMapping("/save/language")
+    public ResponseEntity<?> saveLanguage(@RequestBody UserDto user){
+        return studentService.saveLanguage(user);
+    }
+
+    @PostMapping("save/skill")
+    public ResponseEntity<?> saveSkill(@RequestBody UserDto user){
+        return studentService.saveSkill(user);
+    }
+
+
 }

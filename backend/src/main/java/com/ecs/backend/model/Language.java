@@ -22,7 +22,7 @@ public class Language {
     private Long id;
     private String name;
     private String level;
-    @ManyToMany
-    private Set<Student> students;
+    @ManyToOne
+    private Student student;
 
 }

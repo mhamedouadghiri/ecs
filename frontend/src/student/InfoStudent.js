@@ -30,7 +30,7 @@ function InfoStudent({ user }) {
         (res) => {
           if (res.status === 200) {
             res.json().then((data) => {
-              setSkills([data]);
+              setSkills(data);
               setRefresh(true);
             });
           }
@@ -48,16 +48,8 @@ function InfoStudent({ user }) {
   let detailsSkill = {
     name: nameskill,
     level: levelskill,
-    "student-id": user.id,
+    studentId: user.id,
   };
-  let formBodySkill = [];
-  for (let property in detailsSkill) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailsSkill[property]);
-    formBodySkill.push(encodedKey + "=" + encodedValue);
-  }
-  formBodySkill = formBodySkill.join("&");
-
   const handleSubmitSkill = (e) => {
     e.preventDefault();
     if (nameskill !== "" && levelskill !== "") {
@@ -65,9 +57,9 @@ function InfoStudent({ user }) {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBodySkill,
+        body: JSON.stringify(detailsSkill),
       })
         .then((response) => response.json())
         .then((data) => {

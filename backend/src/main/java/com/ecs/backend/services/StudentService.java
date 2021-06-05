@@ -1,12 +1,8 @@
 package com.ecs.backend.services;
 
 import com.ecs.backend.dto.UserDto;
-import com.ecs.backend.model.Education;
-import com.ecs.backend.model.Experience;
-import com.ecs.backend.model.Student;
-import com.ecs.backend.repositories.EducationRepository;
-import com.ecs.backend.repositories.ExperienceRepository;
-import com.ecs.backend.repositories.StudentRepository;
+import com.ecs.backend.model.*;
+import com.ecs.backend.repositories.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,17 +20,21 @@ public class StudentService {
     final private EducationRepository educationRepository;
     final private StudentRepository studentRepository;
     final private ExperienceRepository experienceRepository;
+    final private LanguageRepository languageRepository;
+    final private SkillRepository skillRepository;
+
 
 
     @Autowired
-    public StudentService(EducationRepository educationRepository, StudentRepository studentRepository, ExperienceRepository experienceRepository) {
+    public StudentService(EducationRepository educationRepository, StudentRepository studentRepository, ExperienceRepository experienceRepository, LanguageRepository languageRepository, SkillRepository skillRepository) {
         this.educationRepository = educationRepository;
-
         this.studentRepository = studentRepository;
         this.experienceRepository = experienceRepository;
+        this.languageRepository = languageRepository;
+        this.skillRepository = skillRepository;
     }
 
-
+    // Educations endpoint
     public ResponseEntity<?> getEducations(Long studentId) {
         List<Education> educations = educationRepository.findAllByStudentId(studentId);
         if (educations == null || educations.isEmpty()){
@@ -73,6 +73,7 @@ public class StudentService {
         return ResponseEntity.ok(education);
     }
 
+    // Experiences endpoint
     public ResponseEntity<?> getExperiences(Long studentId) {
         List<Experience> experiences = experienceRepository.findAllByStudentId(studentId);
         if (experiences == null || experiences.isEmpty()){
@@ -108,5 +109,58 @@ public class StudentService {
         Experience experience = new Experience(null,startDate,endDate, user.getDescription(), student.get());
         experience = experienceRepository.save(experience);
         return ResponseEntity.ok(experience);
+    }
+
+    //Languages Endpoint
+    public ResponseEntity<?> getLanguages(Long studentId) {
+        List<Language> languages = languageRepository.findAllByStudentId(studentId);
+        if (languages == null || languages.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(languages);
+    }
+
+    public ResponseEntity<?> saveLanguage(UserDto user) {
+        if (user.getName() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        long studentId;
+        try {
+            studentId = Long.parseLong(user.getStudentId());
+        } catch (NumberFormatException ignored) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        Optional<Student> student = Optional.of(new Student());
+        student = studentRepository.findById(studentId);
+        Language language = new Language(null,user.getName(), user.getLevel(), student.get());
+        language = languageRepository.save(language);
+        return ResponseEntity.ok(language);
+    }
+
+
+    //Skills Endpoint
+    public ResponseEntity<?> getSkills(Long studentId) {
+        List<Skill> skills = skillRepository.findAllByStudentId(studentId);
+        if (skills == null || skills.isEmpty()){
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
+        }
+        return ResponseEntity.ok(skills);
+    }
+
+    public ResponseEntity<?> saveSkill(UserDto user) {
+        if (user.getName() == null){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        long studentId;
+        try {
+            studentId = Long.parseLong(user.getStudentId());
+        } catch (NumberFormatException ignored) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).build();
+        }
+        Optional<Student> student = Optional.of(new Student());
+        student = studentRepository.findById(studentId);
+        Skill skill = new Skill(null, user.getName(), user.getLevel(), student.get());
+        skill = skillRepository.save(skill);
+        return ResponseEntity.ok(skill);
     }
 }

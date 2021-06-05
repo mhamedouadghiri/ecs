@@ -22,7 +22,7 @@ function Sidebar(props) {
       ).then((res) => {
         if (res.status === 200) {
           res.json().then((data) => {
-            setLanguage([data]);
+            setLanguage(data);
             setRefresh(true);
           });
         }
@@ -89,15 +89,8 @@ function Sidebar(props) {
   let detailslangue = {
     name: namelangue,
     level: levellangue,
-    "student-id": props.user.id,
+    studentId: props.user.id,
   };
-  let formBodylangue = [];
-  for (let property in detailslangue) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailslangue[property]);
-    formBodylangue.push(encodedKey + "=" + encodedValue);
-  }
-  formBodylangue = formBodylangue.join("&");
 
   const handleSubmitLangue = (e) => {
     e.preventDefault();
@@ -106,9 +99,9 @@ function Sidebar(props) {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBodylangue,
+        body: JSON.stringify(detailslangue),
       })
         .then((response) => response.json())
         .then((data) => {
