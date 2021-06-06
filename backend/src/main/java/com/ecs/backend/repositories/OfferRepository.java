@@ -5,7 +5,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.List;
 
-public interface OffreRepository extends JpaRepository<InternshipOffer, Long> {
+public interface OfferRepository extends JpaRepository<InternshipOffer, Long> {
 
     List<InternshipOffer> findAllByCompanyId(Long companyId);
 }

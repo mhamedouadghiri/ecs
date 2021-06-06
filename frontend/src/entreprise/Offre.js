@@ -176,7 +176,7 @@ function Offre(props) {
                     setPay(e.target.value);
                   }}
                   value={pay}
-                  type="text"
+                  type="number"
                   placeholder="Pay"
                 />
               </Form.Group>

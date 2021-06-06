@@ -1,7 +1,7 @@
 package com.ecs.backend.controllers;
 
-import com.ecs.backend.dto.UserDto;
-import com.ecs.backend.services.OffreService;
+import com.ecs.backend.dto.OfferDto;
+import com.ecs.backend.services.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,17 +11,17 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(path = "/offer")
-public class OffreController {
+public class OfferController {
 
-    final private OffreService offreService;
+    private final OfferService offerService;
 
     @Autowired
-    public OffreController(OffreService offreService) {
-        this.offreService = offreService;
+    public OfferController(OfferService offerService) {
+        this.offerService = offerService;
     }
 
     @PostMapping("/save")
-    public ResponseEntity<?> saveOffer(@RequestBody UserDto user){
-        return offreService.saveOffer(user);
+    public ResponseEntity<?> saveOffer(@RequestBody OfferDto offerDto) {
+        return offerService.saveOffer(offerDto);
     }
 }

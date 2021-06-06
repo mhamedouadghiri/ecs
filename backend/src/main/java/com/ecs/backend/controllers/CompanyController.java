@@ -1,7 +1,7 @@
 package com.ecs.backend.controllers;
 
 import com.ecs.backend.services.CompanyService;
-import com.ecs.backend.services.OffreService;
+import com.ecs.backend.services.OfferService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 public class CompanyController {
 
     private final CompanyService companyService;
-    private final OffreService offreService;
+    private final OfferService offerService;
 
     @Autowired
-    public CompanyController(CompanyService companyService, OffreService offreService) {
+    public CompanyController(CompanyService companyService, OfferService offerService) {
         this.companyService = companyService;
-        this.offreService = offreService;
+        this.offerService = offerService;
     }
 
     @GetMapping("/all")
@@ -29,6 +29,6 @@ public class CompanyController {
 
     @GetMapping("/offers/{company-id}")
     public ResponseEntity<?>getAllOffers(@PathVariable("company-id") Long companyId){
-        return offreService.getAllOffers(companyId);
+        return offerService.getAllOffers(companyId);
     }
 }

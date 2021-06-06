@@ -1,35 +1,46 @@
 package com.ecs.backend.model;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
-import java.time.LocalDate;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import java.util.Date;
 
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Data
-@Entity(name = "internshipOffer")
-@Table
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity(name = "internshipOffer")
 public class InternshipOffer {
+
     @Id
-    @GeneratedValue(
-            strategy = IDENTITY
-    )
+    @GeneratedValue(strategy = IDENTITY)
     private Long id;
 
     private String title;
+
     private Integer duration;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date startDate;
+
+    @JsonFormat(pattern = "dd-MM-yyyy")
     private Date endDate;
+
     private String description;
+
     private Integer pay;
+
     private Boolean status;
+
     private String field;
+
     @ManyToOne
     private Company company;
 }
