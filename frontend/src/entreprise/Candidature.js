@@ -9,11 +9,13 @@ function Candidature(props) {
     console.log("id", props.location.id);
     if (!candidatures) {
       fetch(`${properties.url}application/${props.location.id}`)
-        .then((res) => res.json())
-        .then((data) => {
-          setCandidatures(data);
-          console.log(data);
-        });
+        .then((res) => {
+          if (res.status === 200) {
+            res.json().then((data) => {
+              setCandidatures(data);
+              console.log(data);
+            })
+          }});
     }
   }, [candidatures]);
 

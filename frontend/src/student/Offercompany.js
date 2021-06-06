@@ -14,17 +14,17 @@ function Offercompany({ offer, userId }) {
   const handleShow = () => setShow(true);
 
   let detailsCond = {
-    "cover-letter": coverletter,
-    "student-id": userId,
-    "offer-id": offer.id,
+    coverLetter: coverletter,
+    studentId: userId,
+    internshipOfferId: offer.id,
   };
-  let formBodyCond = [];
-  for (let property in detailsCond) {
-    let encodedKey = encodeURIComponent(property);
-    let encodedValue = encodeURIComponent(detailsCond[property]);
-    formBodyCond.push(encodedKey + "=" + encodedValue);
-  }
-  formBodyCond = formBodyCond.join("&");
+  // let formBodyCond = [];
+  // for (let property in detailsCond) {
+  //   let encodedKey = encodeURIComponent(property);
+  //   let encodedValue = encodeURIComponent(detailsCond[property]);
+  //   formBodyCond.push(encodedKey + "=" + encodedValue);
+  // }
+  // formBodyCond = formBodyCond.join("&");
   const handleSubmitCond = (e) => {
     e.preventDefault();
     if (coverletter !== "") {
@@ -32,9 +32,9 @@ function Offercompany({ offer, userId }) {
         method: "POST",
         headers: {
           Accept: "application/json",
-          "Content-Type": "application/x-www-form-urlencoded;charset=UTF-8",
+          "Content-Type": "application/json;charset=UTF-8",
         },
-        body: formBodyCond,
+        body: JSON.stringify(detailsCond),
       });
       setCoverLetter("");
 

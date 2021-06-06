@@ -11,7 +11,7 @@ function Offre(props) {
       ).then((res) => {
         if (res.status === 200) {
           res.json().then((data) => {
-            setOffers([data]);
+            setOffers(data);
           });
         }
       });
