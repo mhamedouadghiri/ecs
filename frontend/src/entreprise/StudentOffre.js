@@ -21,7 +21,7 @@ function StudentOffre({ candidature }) {
               ? candidature.studentInfo.educations.map((education) => (
                   <ListGroup.Item>{education.name}</ListGroup.Item>
                 ))
-              : "<p>toto</p>"}
+              : "---"}
           </ListGroup>
         </Card>
         <Card style={{ width: "15rem" }}>
@@ -31,7 +31,7 @@ function StudentOffre({ candidature }) {
               ? candidature.studentInfo.skills.map((skill) => (
                   <ListGroup.Item>{skill.name}</ListGroup.Item>
                 ))
-              : "<p>toto</p>"}
+              : "---"}
           </ListGroup>
         </Card>
         <Card style={{ width: "15rem" }}>
@@ -41,7 +41,7 @@ function StudentOffre({ candidature }) {
               ? candidature.studentInfo.experiences.map((experience) => (
                   <ListGroup.Item>{experience.description}</ListGroup.Item>
                 ))
-              : "<p>toto</p>"}
+              : "---"}
           </ListGroup>
         </Card>
       </div>
