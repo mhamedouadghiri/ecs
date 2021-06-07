@@ -7,24 +7,16 @@ import { Avatar } from "@material-ui/core";
 import { Form } from "react-bootstrap";
 import { properties } from "../resources/properties";
 
-function Offercompany({ offer, userId }) {
+function Offercompany({ internshipOffer, student }) {
   const [coverletter, setCoverLetter] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   let detailsCond = {
-    coverLetter: coverletter,
-    studentId: userId,
-    internshipOfferId: offer.id,
+    application: { coverletter, student, internshipOffer },
   };
-  // let formBodyCond = [];
-  // for (let property in detailsCond) {
-  //   let encodedKey = encodeURIComponent(property);
-  //   let encodedValue = encodeURIComponent(detailsCond[property]);
-  //   formBodyCond.push(encodedKey + "=" + encodedValue);
-  // }
-  // formBodyCond = formBodyCond.join("&");
+
   const handleSubmitCond = (e) => {
     e.preventDefault();
     if (coverletter !== "") {
@@ -37,6 +29,7 @@ function Offercompany({ offer, userId }) {
         body: JSON.stringify(detailsCond),
       });
       setCoverLetter("");
+      console.log(detailsCond);
 
       handleClose();
     } else {
@@ -50,17 +43,21 @@ function Offercompany({ offer, userId }) {
         <div className="post_header">
           <Avatar />
           <div className="post_info">
-            <h2>{offer.title}</h2>
+            <h2>{internshipOffer.title}</h2>
 
             <p>
-              From {offer.startDate} to {offer.enDate}
+              From {internshipOffer.startDate} to {internshipOffer.endDate}
             </p>
           </div>
         </div>
         <div className="post_body">
-          <p className="field">{offer.field}</p>
-          <p className="description">{offer.description}</p>
-          {offer.pay ? <p className="remuneration">Pay : {offer.pay}$</p> : " "}
+          <p className="field">{internshipOffer.field}</p>
+          <p className="description">{internshipOffer.description}</p>
+          {internshipOffer.pay ? (
+            <p className="remuneration">Pay : {internshipOffer.pay}$</p>
+          ) : (
+            " "
+          )}
         </div>
         <div className="post_buttons">
           <div onClick={handleShow} className="inputOption">

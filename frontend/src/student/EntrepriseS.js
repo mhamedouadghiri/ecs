@@ -10,16 +10,15 @@ function EntrepriseS({ user }) {
         .then((res) => res.json())
         .then((data) => {
           setPosts(data);
-          console.log(data);
+          //console.log(data);
+          console.log(user);
         });
     }
   }, [posts]);
   return (
     <div className="entrepriseS">
       {posts ? (
-        posts.map((post) => (
-          <Post key={post.id} company={post} userId={user.id} />
-        ))
+        posts.map((post) => <Post key={post.id} company={post} userId={user} />)
       ) : (
         <div className="updating">No company insert</div>
       )}

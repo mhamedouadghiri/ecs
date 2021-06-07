@@ -12,6 +12,7 @@ function Offre(props) {
         if (res.status === 200) {
           res.json().then((data) => {
             setOffers(data);
+            //console.log(props.location);
           });
         }
       });
@@ -23,8 +24,8 @@ function Offre(props) {
         offers.map((offer) => (
           <Offercompany
             key={offer.id}
-            offer={offer}
-            userId={props.location.id.idUser}
+            internshipOffer={offer}
+            student={props.location.id.idUser}
           />
         ))
       ) : (
