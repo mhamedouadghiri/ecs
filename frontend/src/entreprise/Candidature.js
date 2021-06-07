@@ -8,7 +8,7 @@ function Candidature(props) {
   useEffect(() => {
     console.log("id", props.location.id);
     if (!candidatures) {
-      fetch(`${properties.url}application/${props.location.id}`)
+      fetch(`${properties.url}${properties.application}${props.location.id}`)
         .then((res) => {
           if (res.status === 200) {
             res.json().then((data) => {
