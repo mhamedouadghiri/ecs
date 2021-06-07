@@ -12,12 +12,11 @@ import java.util.List;
 @Service
 public class SchoolService {
 
-    final private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     @Autowired
     public SchoolService(StudentRepository studentRepository) {
         this.studentRepository = studentRepository;
-
     }
 
     public ResponseEntity<?> getStudents(Long schoolId) {

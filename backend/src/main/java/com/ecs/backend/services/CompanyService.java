@@ -11,20 +11,17 @@ import java.util.List;
 @Service
 public class CompanyService {
 
-    final private CompanyRepository companyRepository;
+    private final CompanyRepository companyRepository;
 
     public CompanyService(CompanyRepository companyRepository) {
         this.companyRepository = companyRepository;
     }
 
-
     public ResponseEntity<?> getAll() {
         List<Company> companies = companyRepository.findAll();
-        if (companies.isEmpty() || companies == null){
+        if (companies.isEmpty()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).build();
         }
         return ResponseEntity.ok(companies);
     }
-
-
 }
