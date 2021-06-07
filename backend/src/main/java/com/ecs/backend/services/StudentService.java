@@ -7,7 +7,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import javax.persistence.*;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -17,6 +19,9 @@ import java.util.Optional;
 @Service
 public class StudentService {
 
+    @PersistenceUnit
+    private final EntityManagerFactory entityManagerFactory;
+
     private final EducationRepository educationRepository;
     private final StudentRepository studentRepository;
     private final ExperienceRepository experienceRepository;
@@ -25,7 +30,8 @@ public class StudentService {
     private final ApplicationRepository applicationRepository;
 
     @Autowired
-    public StudentService(EducationRepository educationRepository, StudentRepository studentRepository, ExperienceRepository experienceRepository, LanguageRepository languageRepository, SkillRepository skillRepository, ApplicationRepository applicationRepository) {
+    public StudentService(EntityManagerFactory EntityManagerFactory, EducationRepository educationRepository, StudentRepository studentRepository, ExperienceRepository experienceRepository, LanguageRepository languageRepository, SkillRepository skillRepository, ApplicationRepository applicationRepository) {
+        this.entityManagerFactory = EntityManagerFactory;
         this.educationRepository = educationRepository;
         this.studentRepository = studentRepository;
         this.experienceRepository = experienceRepository;
@@ -165,7 +171,11 @@ public class StudentService {
     }
 
     public ResponseEntity<?> apply(Application application) {
+        application.setInternshipOfferId(application.getInternshipOffer().getId());
+        application.setStudentId(application.getStudent().getId());
+
         Application save = applicationRepository.save(application);
+
         return ResponseEntity.ok(save);
     }
 }

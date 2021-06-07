@@ -1,20 +1,22 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import "./Offercompany.css";
 import EmailIcon from "@material-ui/icons/Email";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { Avatar } from "@material-ui/core";
-import { Form } from "react-bootstrap";
-import { properties } from "../resources/properties";
+import {Avatar} from "@material-ui/core";
+import {Form} from "react-bootstrap";
+import {properties} from "../resources/properties";
 
-function Offercompany({ internshipOffer, student }) {
+function Offercompany({internshipOffer, student}) {
   const [coverletter, setCoverLetter] = useState("");
   const [show, setShow] = useState(false);
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
   let detailsCond = {
-    application: { coverletter, student, internshipOffer },
+    coverLetter: coverletter,
+    student: student,
+    internshipOffer: internshipOffer,
   };
 
   const handleSubmitCond = (e) => {
@@ -41,7 +43,7 @@ function Offercompany({ internshipOffer, student }) {
     <>
       <div className="offercompany">
         <div className="post_header">
-          <Avatar />
+          <Avatar/>
           <div className="post_info">
             <h2>{internshipOffer.title}</h2>
 
@@ -61,7 +63,7 @@ function Offercompany({ internshipOffer, student }) {
         </div>
         <div className="post_buttons">
           <div onClick={handleShow} className="inputOption">
-            <EmailIcon style={{ color: "gray" }} />
+            <EmailIcon style={{color: "gray"}}/>
             <h5>Postule</h5>
           </div>
         </div>
