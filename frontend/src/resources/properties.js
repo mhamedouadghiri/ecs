@@ -15,4 +15,5 @@ export const properties = {
   StudentLanguage: "student/languages/",
   StudentExperience: "student/experiences/",
   studentapply: "student/apply",
+  application: "application/",
 };
