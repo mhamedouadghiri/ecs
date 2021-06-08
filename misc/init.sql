@@ -1,0 +1,7 @@
+DROP USER IF EXISTS 'jee'@'%';
+CREATE USER 'jee'@'%' IDENTIFIED BY 'jee.mysql';
+GRANT ALL ON *.* TO 'jee'@'%';
+
+DROP DATABASE IF EXISTS jee;
+CREATE DATABASE jee;
+USE jee;

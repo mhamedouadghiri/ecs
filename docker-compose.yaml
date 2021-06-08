@@ -1,0 +1,45 @@
+version: '3.8'
+
+services:
+  backend:
+    build:
+      context: backend
+      dockerfile: Dockerfile
+    restart: always
+    depends_on:
+      - db
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://db:3306/jee?useSSL=false&serverTimezone=UTC&useLegacyDatetimeCode=false&allowPublicKeyRetrieval=true
+      SPRING_DATASOURCE_USERNAME: jee
+      SPRING_DATASOURCE_PASSWORD: jee.mysql
+      SPRING_JPA_HIBERNATE_DDL-AUTO: none
+    ports:
+      - "8080:8080"
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: Dockerfile
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    command: nginx -g "daemon off;"
+
+  db:
+    image: mysql:8.0.21
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: jee
+      MYSQL_USER: jee
+      MYSQL_PASSWORD: jee.mysql
+    volumes:
+      - db-data:/var/lib/mysql
+      - ./misc/init.sql:/docker-entrypoint-initdb.d/1init.sql
+      - ./misc/dump.sql:/docker-entrypoint-initdb.d/2dump.sql
+
+volumes:
+  db-data: { }
