@@ -1,0 +1,38 @@
+name: Docker CI
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+
+  build:
+
+    runs-on: ubuntu-20.04
+
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v2
+      -
+        name: Login to DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push (backend)
+        uses: docker/build-push-action@v2
+        with:
+          context: backend
+          push: true
+          tags: mhamedouadghiri/ecs_backend:latest
+          no-cache: true
+      -
+        name: Build and push (frontend)
+        uses: docker/build-push-action@v2
+        with:
+          context: frontend
+          push: true
+          tags: mhamedouadghiri/ecs_frontend:latest
+          no-cache: true
